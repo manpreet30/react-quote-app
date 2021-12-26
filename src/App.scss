@@ -1,0 +1,10 @@
+.nav {
+  background-color: darkslategray;
+  .nav-link {
+    color: white;
+    &:hover,
+    &:focus {
+      color: white;
+    }
+  }
+}
