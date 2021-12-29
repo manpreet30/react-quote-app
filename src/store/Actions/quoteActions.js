@@ -1,19 +1,23 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:3001/quotes";
+import quoteService from "../../services/quoteService";
 
 const getQuotes = () => {
   return (dispatch) => {
-    axios.get(BASE_URL).then((res) => {
+    quoteService.getQuotes().then((res) => {
       dispatch({ type: "GET_QUOTES", payload: res.data });
     });
+  };
+};
+
+const setQuotes = (payload) => {
+  return (dispatch) => {
+    dispatch({ type: "SET_QUOTE", payload });
   };
 };
 
 const showQuoteModal = (id = false) => {
   return (dispatch) => {
     if (id) {
-      axios.get(`${BASE_URL}/${id}`).then((res) => {
+      quoteService.getQuote(id).then((res) => {
         dispatch({ type: "GET_QUOTE", payload: res.data });
       });
     } else {
@@ -28,4 +32,4 @@ const hideQuoteModal = () => {
   };
 };
 
-export { getQuotes, showQuoteModal, hideQuoteModal };
+export { getQuotes, showQuoteModal, hideQuoteModal, setQuotes };

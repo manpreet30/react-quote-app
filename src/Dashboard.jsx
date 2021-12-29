@@ -1,12 +1,4 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
 const Dashboard = () => {
-  const quote = useSelector((state) => state.quote.quote);
-
-  useEffect(() => {
-    console.log("quote", quote);
-  }, [quote]);
-
-  return <></>;
+  return <h3 className="text-center mt-5">Hello User</h3>;
 };
 export default Dashboard;

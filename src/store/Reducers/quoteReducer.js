@@ -31,8 +31,12 @@ export default function quoteReducer(state = initialState, action) {
         showQuoteModal: false,
       };
     case "GET_QUOTE":
-      console.log(action)
       return getQuote(state, action.payload);
+    case "SET_QUOTE":
+      return {
+        ...state,
+        quote: action.payload,
+      };
 
     default:
       return state;

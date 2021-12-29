@@ -1,12 +1,19 @@
 import { ListGroup, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { showQuoteModal } from "../store/Actions/quoteActions";
+import { getQuotes, showQuoteModal } from "../store/Actions/quoteActions";
+import quoteService from "../services/quoteService";
 
 const Quote = (props) => {
   const dispatch = useDispatch();
 
   const onClickEdit = (id) => {
     dispatch(showQuoteModal(id));
+  };
+
+  const onClickDelete = (id) => {
+    quoteService.deleteQuote(id).then((res) => {
+      dispatch(getQuotes());
+    });
   };
 
   const q = props.quoteData;
@@ -19,7 +26,7 @@ const Quote = (props) => {
       <Button variant="secondary" size="sm" className="mx-1" onClick={(e) => onClickEdit(q._id)}>
         Edit
       </Button>
-      <Button variant="danger" size="sm">
+      <Button variant="danger" size="sm" onClick={(e) => onClickDelete(q._id)}>
         Delete
       </Button>
     </ListGroup.Item>
