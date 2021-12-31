@@ -1,25 +1,24 @@
-import axios from "axios";
+import api from "./api";
 
-const BASE_URL = "http://localhost:3001/quotes";
-
+const BASE_URL = "/quotes";
 const getQuotes = () => {
-  return axios.get(BASE_URL);
+  return api.get("/quotes");
 };
 
 const getQuote = (id) => {
-  return axios.get(`${BASE_URL}/${id}`);
+  return api.get(`${BASE_URL}/${id}`);
 };
 
 const addQuote = (quote) => {
-  return axios.post(`${BASE_URL}`, quote);
+  return api.post(`${BASE_URL}`, quote);
 };
 
 const updateQuote = (id, quote) => {
-  return axios.put(`${BASE_URL}/${id}`, quote);
+  return api.put(`${BASE_URL}/${id}`, quote);
 };
 
 const deleteQuote = (id) => {
-  return axios.delete(`${BASE_URL}/${id}`);
+  return api.delete(`${BASE_URL}/${id}`);
 };
 
 const exportData = {

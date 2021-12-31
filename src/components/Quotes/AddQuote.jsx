@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { hideQuoteModal, setQuotes, getQuotes } from "../store/Actions/quoteActions";
-import quoteSeService from "../services/quoteService";
+import { hideQuoteModal, setQuotes, getQuotes } from "../../store/Actions/quoteActions";
+import quoteSeService from "../../services/quoteService";
 
 const AddQuote = () => {
   const dispatch = useDispatch();

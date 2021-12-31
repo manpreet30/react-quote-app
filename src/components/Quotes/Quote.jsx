@@ -1,7 +1,7 @@
 import { ListGroup, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { getQuotes, showQuoteModal } from "../store/Actions/quoteActions";
-import quoteService from "../services/quoteService";
+import { getQuotes, showQuoteModal } from "../../store/Actions/quoteActions";
+import quoteService from "../../services/quoteService";
 
 const Quote = (props) => {
   const dispatch = useDispatch();

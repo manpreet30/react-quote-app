@@ -2,7 +2,7 @@ import { ListGroup, Container, Button, Row, Col } from "react-bootstrap";
 import { useEffect } from "react";
 import Quote from "./Quote";
 import { useDispatch, useSelector } from "react-redux";
-import { getQuotes, setQuotes, showQuoteModal } from "../store/Actions/quoteActions";
+import { getQuotes, setQuotes, showQuoteModal } from "../../store/Actions/quoteActions";
 import AddQuote from "./AddQuote";
 
 const Quotes = () => {
