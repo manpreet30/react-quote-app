@@ -1,7 +1,12 @@
 {
   "name": "my-react",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Simple React Quote App with JWT Authentication",
+  "author": {
+    "name": "Manpreet Singh",
+    "email": "manpreettech30@gmail.com"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
@@ -44,5 +49,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [
+    "React",
+    "Quote",
+    "App",
+    "Authentication"
+  ]
 }
