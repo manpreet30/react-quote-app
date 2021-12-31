@@ -1,44 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { hideQuoteModal, setQuotes, getQuotes } from "../../store/Actions/quoteActions";
 import quoteSeService from "../../services/quoteService";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const AddQuote = () => {
   const dispatch = useDispatch();
 
   const showQuoteModal = useSelector((state) => state.quote.showQuoteModal);
   const quote = useSelector((state) => state.quote.quote);
-  const [localQuote, setLocalQuote] = useState({ name: "", quote: "" });
+
+  const onClickCancel = () => {
+    dispatch(hideQuoteModal());
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      quote: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string().required(),
+      quote: Yup.string().required().min(10),
+    }),
+    onSubmit: (values) => {
+      const api = quote ? quoteSeService.updateQuote(quote._id, { ...values }) : quoteSeService.addQuote({ ...values });
+      api.then((_) => {
+        onClickCancel();
+        dispatch(getQuotes());
+      });
+    },
+  });
 
   useEffect(() => {
     if (quote) {
-      setLocalQuote({ name: quote.name, quote: quote.quote });
+      formik.setValues({ name: quote.name, quote: quote.quote });
     }
   }, [quote]);
 
   useEffect(() => {
     if (!showQuoteModal) {
       dispatch(setQuotes(null));
-      setLocalQuote({ name: "", quote: "" });
+      formik.handleReset();
     }
-  }, [showQuoteModal, dispatch]);
-
-  const onClickCancel = () => {
-    dispatch(hideQuoteModal());
-  };
-
-  const onSubmit = () => {
-    const api = quote ? quoteSeService.updateQuote(quote._id, localQuote) : quoteSeService.addQuote(localQuote);
-    api
-      .then((res) => {
-        onClickCancel();
-        dispatch(getQuotes());
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  }, [showQuoteModal]);
 
   return (
     <Modal show={showQuoteModal} onHide={onClickCancel}>
@@ -48,13 +55,15 @@ const AddQuote = () => {
 
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="name">
             <Form.Label>Author</Form.Label>
-            <Form.Control type="text" placeholder="Please enter author name" value={localQuote.name} onChange={(e) => setLocalQuote({ ...localQuote, name: e.target.value })} />
+            <Form.Control type="text" placeholder="Enter author name" isInvalid={formik.touched.name && formik.errors.name} onChange={formik.handleChange} defaultValue={formik.values.name} />
+            <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className="mb-3" controlId="quote">
             <Form.Label>Quote</Form.Label>
-            <Form.Control type="text" placeholder="Please enter quote" value={localQuote.quote} onChange={(e) => setLocalQuote({ ...localQuote, quote: e.target.value })} />
+            <Form.Control type="text" placeholder="Enter quote" isInvalid={formik.touched.quote && formik.errors.quote} onChange={formik.handleChange} defaultValue={formik.values.quote} />
+            <Form.Control.Feedback type="invalid">{formik.errors.quote}</Form.Control.Feedback>
           </Form.Group>
         </Form>
       </Modal.Body>
@@ -63,7 +72,7 @@ const AddQuote = () => {
         <Button variant="secondary" size="sm" onClick={onClickCancel}>
           Close
         </Button>
-        <Button variant="primary" size="sm" onClick={onSubmit}>
+        <Button variant="primary" size="sm" onClick={formik.handleSubmit}>
           {quote ? "Update" : "Add"}
         </Button>
       </Modal.Footer>

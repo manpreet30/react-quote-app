@@ -5,11 +5,9 @@ const login = (creds) => {
     authService
       .authLogin(creds)
       .then((res) => {
-        dispatch(setErrorMessage(null));
         dispatch(setToken(res.data.token));
       })
       .catch((err) => {
-        dispatch(setErrorMessage(err.response.data.message));
         dispatch(setToken(null));
       });
   };

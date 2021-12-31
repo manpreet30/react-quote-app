@@ -1,30 +1,48 @@
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../store/Actions/authActions";
 
 const Header = () => {
   const token = useSelector((s) => s.auth.token);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onClickLogout = () => {
+    dispatch(setToken(null));
+    navigate("/login");
+  };
+
   return (
     <Nav>
       {token ? (
         <>
           <Nav.Item>
-            <Link className="nav-link" to="/">Dashboard</Link>
+            <Link className="nav-link" to="/">
+              Dashboard
+            </Link>
           </Nav.Item>
           <Nav.Item>
-            <Link className="nav-link" to="/quotes">Quotes</Link>
+            <Link className="nav-link" to="/quotes">
+              Quotes
+            </Link>
           </Nav.Item>
           <Nav.Item>
-            <Link className="nav-link" to="/logout">Logout</Link>
+            <Nav.Link onClick={onClickLogout}>Logout</Nav.Link>
           </Nav.Item>
         </>
       ) : (
         <>
           <Nav.Item>
-            <Link className="nav-link" to="/login">Login</Link>
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
           </Nav.Item>
           <Nav.Item>
-            <Link className="nav-link" to="/login">Register</Link>
+            <Link className="nav-link" to="/login">
+              Register
+            </Link>
           </Nav.Item>
         </>
       )}
