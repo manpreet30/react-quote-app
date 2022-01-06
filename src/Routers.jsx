@@ -7,11 +7,13 @@ import PrivateRoute from "./components/PrivateRoute";
 const Routers = () => {
   return (
     <Routes>
+      <Route path="login" element={<Login />} />
       <Route exact path="/quotes" element={<PrivateRoute />}>
         <Route exact path="/quotes" element={<Quotes />} />
       </Route>
-      <Route path="login" element={<Login />} />
-      <Route path="/" element={<Dashboard />} />
+      <Route exact path="/" element={<PrivateRoute />}>
+        <Route path="/" element={<Dashboard />} />
+      </Route>
     </Routes>
   );
 };
