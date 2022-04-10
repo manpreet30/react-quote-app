@@ -1,7 +1,7 @@
 import DataTable from "react-data-table-component";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 import { getUsers, setUsers } from "../../store/Actions/userActions";
 
 const UserList = () => {
@@ -13,6 +13,16 @@ const UserList = () => {
     { name: "Last Name", selector: (row) => row.lastName, sortable: true },
     { name: "Email", selector: (row) => row.email, sortable: true },
     { name: "Status", selector: (row) => (row.status ? "Active" : "InActive"), sortable: true },
+    {
+      name: "Action",
+      cell: (record) => {
+        return (
+          <Button size="sm" variant="outline-primary" onClick={() => alert("Hello " + record.firstName)}>
+            View
+          </Button>
+        );
+      },
+    },
   ];
 
   useEffect(() => {
