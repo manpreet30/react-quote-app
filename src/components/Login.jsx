@@ -30,33 +30,31 @@ const Login = () => {
   });
 
   return (
-    <>
-      <Container fluid="md" className="mt-3">
-        <Row>
-          <Col md={{ span: 6, offset: 3 }} className="d-flex mb-4">
-            <h2>Fancy Login Heading</h2>
-          </Col>
-          <Col md={{ span: 6, offset: 3 }} className="d-flex justify-content-between mb-1">
-            <Form className="w-100" onSubmit={loginForm.handleSubmit}>
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" isInvalid={loginForm.touched.email && loginForm.errors.email} onChange={loginForm.handleChange} defaultValue={loginForm.values.email} />
-                <Form.Control.Feedback type="invalid">{loginForm.errors.email}</Form.Control.Feedback>
-              </Form.Group>
+    <Container fluid="md" className="mt-3">
+      <Row>
+        <Col md={{ span: 6, offset: 3 }} className="d-flex mb-4">
+          <h2>Fancy Login Heading</h2>
+        </Col>
+        <Col md={{ span: 6, offset: 3 }} className="d-flex justify-content-between mb-1">
+          <Form className="w-100" onSubmit={loginForm.handleSubmit}>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" isInvalid={loginForm.touched.email && loginForm.errors.email} onChange={loginForm.handleChange} defaultValue={loginForm.values.email} />
+              <Form.Control.Feedback type="invalid">{loginForm.errors.email}</Form.Control.Feedback>
+            </Form.Group>
 
-              <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" isInvalid={loginForm.touched.password && loginForm.errors.password} onChange={loginForm.handleChange} defaultValue={loginForm.values.password} />
-                <Form.Control.Feedback type="invalid">{loginForm.errors.password}</Form.Control.Feedback>
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" isInvalid={loginForm.touched.password && loginForm.errors.password} onChange={loginForm.handleChange} defaultValue={loginForm.values.password} />
+              <Form.Control.Feedback type="invalid">{loginForm.errors.password}</Form.Control.Feedback>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default Login;

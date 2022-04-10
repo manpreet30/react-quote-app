@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../store/Actions/authActions";
 
 const Header = () => {
-  const token = useSelector((s) => s.auth.token);
+  const { token, user } = useSelector((s) => s.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Header = () => {
         <>
           <Nav.Item>
             <Link className="nav-link" to="/">
-              Dashboard
+              Welcome {user?.firstName}
             </Link>
           </Nav.Item>
           <Nav.Item>

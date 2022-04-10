@@ -5,7 +5,7 @@ const login = (creds) => {
     authService
       .authLogin(creds)
       .then((res) => {
-        dispatch(setToken(res.data.token));
+        dispatch(setToken(res.data));
       })
       .catch((err) => {
         dispatch(setToken(null));
