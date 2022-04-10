@@ -8,6 +8,16 @@ import { ToastContainer, Toast } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setErrorMessage } from "./store/Actions/authActions";
 
+// create wrapper component
+// saga
+// lazy routing
+// higher order component
+// custom hook
+// moduler css
+// react composition
+// documentation
+// error boundary
+
 function App() {
   const [showError, setShowError] = useState(false);
   const { errorMessage } = useSelector((s) => s.auth);
