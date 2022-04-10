@@ -15,10 +15,24 @@ const updateUser = (user) => {
   };
 };
 
+const getUsers = () => {
+  return (dispatch) => {
+    userService.getUsers().then((res) => {
+      dispatch({ type: "GET_USERS", payload: res.data });
+    });
+  };
+};
+
+const setUsers = (payload) => {
+  return (dispatch) => {
+    dispatch({ type: "SET_USERS", payload });
+  };
+};
+
 const toggleIsUserUpdated = (payload) => {
   return (dispatch) => {
     dispatch({ type: "USER_UPDATED", payload });
   };
 };
 
-export { updateUser, toggleIsUserUpdated };
+export { updateUser, toggleIsUserUpdated, getUsers, setUsers };

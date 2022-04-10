@@ -3,6 +3,7 @@ import Quotes from "./components/Quotes/Quotes";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import UserList from "./components/User/UsersList";
 
 const Routers = () => {
   return (
@@ -10,6 +11,9 @@ const Routers = () => {
       <Route path="login" element={<Login />} />
       <Route exact path="/quotes" element={<PrivateRoute />}>
         <Route exact path="/quotes" element={<Quotes />} />
+      </Route>
+      <Route exact path="/users" element={<PrivateRoute />}>
+        <Route exact path="/users" element={<UserList />} />
       </Route>
       <Route exact path="/" element={<PrivateRoute />}>
         <Route path="/" element={<Dashboard />} />

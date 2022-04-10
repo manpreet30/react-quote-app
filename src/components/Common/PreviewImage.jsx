@@ -16,7 +16,7 @@ const PreviewImage = ({ image }) => {
     }
   }, [image]);
 
-  return <div>{imgTag ? <img src={preview} alt="Image" width="200" height="200" /> : ""}</div>;
+  return <div>{imgTag ? <img src={preview} alt="preview" width="200" height="200" /> : ""}</div>;
 };
 
 export default PreviewImage;

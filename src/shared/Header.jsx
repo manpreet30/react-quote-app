@@ -29,6 +29,11 @@ const Header = () => {
             </Link>
           </Nav.Item>
           <Nav.Item>
+            <Link className="nav-link" to="/users">
+              Users
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
             <Nav.Link onClick={onClickLogout}>Logout</Nav.Link>
           </Nav.Item>
         </>

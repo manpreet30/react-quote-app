@@ -3,6 +3,7 @@ const initialState = {
   user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
   errorMessage: null,
   isUserUpdated: false,
+  users: [],
 };
 
 const updateUser = (state, payload) => {
@@ -15,8 +16,22 @@ const updateUser = (state, payload) => {
   };
 };
 
+const getUsers = (state, users) => {
+  return {
+    ...state,
+    users,
+  };
+};
+
 export default function quoteReducer(state = initialState, action) {
   switch (action.type) {
+    case "GET_USERS":
+      return getUsers(state, action.payload);
+    case "SET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
     case "UPDATE_USER":
       return updateUser(state, action.payload);
     case "USER_UPDATED":
