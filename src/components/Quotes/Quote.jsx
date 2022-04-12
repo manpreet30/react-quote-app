@@ -17,8 +17,13 @@ const Quote = (props) => {
   };
 
   const q = props.quoteData;
-  if(q.name === 'Yoda') {
-    throw 'OOOOO NOOOOO YODAAAAAA'
+  if (q.name === "Yoda") {
+    // to check error boundaries
+    // throw (
+    //   <ListGroup.Item as="li" style={{ color: "red" }} className="d-flex justify-content-between align-items-start">
+    //     OOOOO NOOOOO YODAAAAAA
+    //   </ListGroup.Item>
+    // );
   }
   return (
     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">

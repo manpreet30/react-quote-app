@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Button } from "react-bootstrap";
 import { getUsers, setUsers } from "../../store/Actions/userActions";
+import UserCss from "./users.module.scss";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const UserList = () => {
   }, [dispatch]);
 
   return (
-    <Container fluid="md" className="mt-3">
+    <Container fluid="md" className={UserCss['mt-3']}>
       <Row>
         <DataTable columns={columns} data={users} />
       </Row>

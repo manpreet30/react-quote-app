@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getQuotes, setQuotes, showQuoteModal } from "../../store/Actions/quoteActions";
 import AddQuote from "./AddQuote";
 import ErrorBoundary from "../../shared/ErrorBoundary";
+import "./quotes.scss";
 
 const Quotes = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Quotes = () => {
         <ListGroup as="ol" numbered>
           {quotes.map((q, key) => {
             return (
-              <ErrorBoundary>
+              <ErrorBoundary key={key}>
                 <Quote quoteData={q} key={key} />
               </ErrorBoundary>
             );
